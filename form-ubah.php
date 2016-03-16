@@ -14,25 +14,27 @@
       <div class="page-header">
         <h4>
           <i class="glyphicon glyphicon-edit"></i> 
-          Input data siswa
+          Ubah data siswa
         </h4>
       </div> <!-- /.page-header -->
       <?php
-      $nis   = $_GET['id'];
-      $query = mysqli_query($db, "SELECT * FROM is_siswa WHERE nis='$nis'") or die('Query Error : '.mysqli_error($db));
-      while ($data  = mysqli_fetch_assoc($query)) {
-        $nis           = $data['nis'];
-        $nama          = $data['nama'];
-        $tempat_lahir  = $data['tempat_lahir'];
-        
-        $tanggal       = $data['tanggal_lahir'];
-        $tgl           = explode('-',$tanggal);
-        $tanggal_lahir = $tgl[2]."-".$tgl[1]."-".$tgl[0];
-        
-        $jenis_kelamin = $data['jenis_kelamin'];
-        $agama         = $data['agama'];
-        $alamat        = $data['alamat'];
-        $no_telepon    = $data['no_telepon'];
+      if (isset($_GET['id'])) {
+        $nis   = $_GET['id'];
+        $query = mysqli_query($db, "SELECT * FROM is_siswa WHERE nis='$nis'") or die('Query Error : '.mysqli_error($db));
+        while ($data  = mysqli_fetch_assoc($query)) {
+          $nis           = $data['nis'];
+          $nama          = $data['nama'];
+          $tempat_lahir  = $data['tempat_lahir'];
+          
+          $tanggal       = $data['tanggal_lahir'];
+          $tgl           = explode('-',$tanggal);
+          $tanggal_lahir = $tgl[2]."-".$tgl[1]."-".$tgl[0];
+          
+          $jenis_kelamin = $data['jenis_kelamin'];
+          $agama         = $data['agama'];
+          $alamat        = $data['alamat'];
+          $no_telepon    = $data['no_telepon'];
+        }
       }
       ?>
       <div class="panel panel-default">
