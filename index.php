@@ -84,6 +84,8 @@ require_once "config/database.php";
         include "form-tambah.php";
       } elseif ($_GET['page'] == 'ubah') {
         include "form-ubah.php";
+      } elseif ($_GET['page'] == 'monitoring') {
+        include "monitoring.php";
       } 
       ?>
     </div> <!-- /.container-fluid -->

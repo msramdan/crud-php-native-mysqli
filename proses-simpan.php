@@ -1,21 +1,6 @@
 <?php
 // Panggil koneksi database
 require_once "config/database.php";
-
-// date_default_timezone_set('Asia/Jakarta');
-// $nama_hari = array(
-//     'Minggu',
-//     'Senin',
-//     'Selasa',
-//     'Rabu',
-//     'Kamis',
-//     'Jumat',
-//     'Sabtu'
-// );
-// $indeks_hari = date('w');
-// echo "Hari ini adalah " . $nama_hari[$indeks_hari];
-// die();
-
 if (isset($_POST['simpan'])) {
 	$nama_guru           = mysqli_real_escape_string($db, trim($_POST['nama_guru']));
 	$mapel          = mysqli_real_escape_string($db, trim($_POST['mapel']));
