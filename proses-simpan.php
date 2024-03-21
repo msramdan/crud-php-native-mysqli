@@ -1,49 +1,45 @@
- <!-- Aplikasi CRUD
- ************************************************
- * Developer    : Indra Styawantoro
- * Company      : Indra Studio
- * Release Date : 1 Maret 2016
- * Website      : http://www.indrasatya.com, http://www.kulikoding.net
- * E-mail       : indra.setyawantoro@gmail.com
- * Phone        : +62-856-6991-9769
- * BBM          : 7679B9D9
- -->
-
 <?php
 // Panggil koneksi database
 require_once "config/database.php";
 
+// date_default_timezone_set('Asia/Jakarta');
+// $nama_hari = array(
+//     'Minggu',
+//     'Senin',
+//     'Selasa',
+//     'Rabu',
+//     'Kamis',
+//     'Jumat',
+//     'Sabtu'
+// );
+// $indeks_hari = date('w');
+// echo "Hari ini adalah " . $nama_hari[$indeks_hari];
+// die();
+
 if (isset($_POST['simpan'])) {
-	$nis           = mysqli_real_escape_string($db, trim($_POST['nis']));
-	$nama          = mysqli_real_escape_string($db, trim($_POST['nama']));
-	$tempat_lahir  = mysqli_real_escape_string($db, trim($_POST['tempat_lahir']));
+	$nama_guru           = mysqli_real_escape_string($db, trim($_POST['nama_guru']));
+	$mapel          = mysqli_real_escape_string($db, trim($_POST['mapel']));
+	$kelas  = mysqli_real_escape_string($db, trim($_POST['kelas']));
+	$ruangan  = mysqli_real_escape_string($db, trim($_POST['ruangan']));
+	$hari  = mysqli_real_escape_string($db, trim($_POST['hari']));
+	$jam_mulai  = mysqli_real_escape_string($db, trim($_POST['jam_mulai']));
+	$jam_selesai  = mysqli_real_escape_string($db, trim($_POST['jam_selesai']));
 
-	$tanggal       = $_POST['tanggal_lahir'];
-	$tgl           = explode('-',$tanggal);
-	$tanggal_lahir = $tgl[2]."-".$tgl[1]."-".$tgl[0];
-
-	$jenis_kelamin = $_POST['jenis_kelamin'];
-	$agama         = $_POST['agama'];
-	$alamat        = mysqli_real_escape_string($db, trim($_POST['alamat']));
-	$no_telepon    = $_POST['no_telepon'];
-
-	// perintah query untuk menyimpan data ke tabel is_siswa
-	$query = mysqli_query($db, "INSERT INTO is_siswa(nis,
-													 nama,
-													 tempat_lahir,
-													 tanggal_lahir,
-													 jenis_kelamin,
-													 agama,
-													 alamat,
-													 no_telepon)	
-											  VALUES('$nis',
-													 '$nama',
-													 '$tempat_lahir',
-													 '$tanggal_lahir',
-													 '$jenis_kelamin',
-													 '$agama',
-													 '$alamat',
-													 '$no_telepon')");		
+	// perintah query untuk menyimpan data ke tabel tbl_ajar
+	$query = mysqli_query($db, "INSERT INTO tbl_ajar(nama_guru,
+													 mapel,
+													 kelas,
+													 ruangan,
+													 hari,
+													 jam_mulai,
+													 jam_selesai)
+											  VALUES('$nama_guru',
+													 '$mapel',
+													 '$kelas',
+													 '$ruangan',
+													 '$hari',
+													 '$jam_mulai',
+													 '$jam_selesai')");
 
 	// cek hasil query
 	if ($query) {
@@ -52,6 +48,5 @@ if (isset($_POST['simpan'])) {
 	} else {
 		// jika gagal tampilkan pesan kesalahan
 		header('location: index.php?alert=1');
-	}	
-}					
-?>
+	}
+}

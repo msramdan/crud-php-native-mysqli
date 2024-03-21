@@ -1,42 +1,28 @@
- <!-- Aplikasi CRUD
- ************************************************
- * Developer    : Indra Styawantoro
- * Company      : Indra Studio
- * Release Date : 1 Maret 2016
- * Website      : http://www.indrasatya.com, http://www.kulikoding.net
- * E-mail       : indra.setyawantoro@gmail.com
- * Phone        : +62-856-6991-9769
- * BBM          : 7679B9D9
- -->
- 
 <?php
 // Panggil koneksi database
 require_once "config/database.php";
 
 if (isset($_POST['simpan'])) {
-	if (isset($_POST['nis'])) {
-		$nis           = mysqli_real_escape_string($db, trim($_POST['nis']));
-		$nama          = mysqli_real_escape_string($db, trim($_POST['nama']));
-		$tempat_lahir  = mysqli_real_escape_string($db, trim($_POST['tempat_lahir']));
+	if (isset($_POST['id'])) {
+		$id           = $_POST['id'];
+		$nama_guru           = mysqli_real_escape_string($db, trim($_POST['nama_guru']));
+		$mapel          = mysqli_real_escape_string($db, trim($_POST['mapel']));
+		$kelas  = mysqli_real_escape_string($db, trim($_POST['kelas']));
+		$ruangan  = mysqli_real_escape_string($db, trim($_POST['ruangan']));
+		$hari  = mysqli_real_escape_string($db, trim($_POST['hari']));
+		$jam_mulai  = mysqli_real_escape_string($db, trim($_POST['jam_mulai']));
+		$jam_selesai  = mysqli_real_escape_string($db, trim($_POST['jam_selesai']));
 
-		$tanggal       = $_POST['tanggal_lahir'];
-		$tgl           = explode('-',$tanggal);
-		$tanggal_lahir = $tgl[2]."-".$tgl[1]."-".$tgl[0];
 
-		$jenis_kelamin = $_POST['jenis_kelamin'];
-		$agama         = $_POST['agama'];
-		$alamat        = mysqli_real_escape_string($db, trim($_POST['alamat']));
-		$no_telepon    = $_POST['no_telepon'];
-
-		// perintah query untuk mengubah data pada tabel is_siswa
-		$query = mysqli_query($db, "UPDATE is_siswa SET nama 			= '$nama',
-														tempat_lahir 	= '$tempat_lahir',
-														tanggal_lahir 	= '$tanggal_lahir',
-														jenis_kelamin 	= '$jenis_kelamin',
-														agama 			= '$agama',
-														alamat 			= '$alamat',
-														no_telepon 		= '$no_telepon'
-												  WHERE nis 			= '$nis'");		
+		// perintah query untuk mengubah data pada tabel tbl_ajar
+		$query = mysqli_query($db, "UPDATE tbl_ajar SET nama_guru 	= '$nama_guru',
+														mapel 		= '$mapel',
+														kelas 		= '$kelas',
+														ruangan 	= '$ruangan',
+														hari 		= '$hari',
+														jam_mulai 	= '$jam_mulai',
+														jam_selesai = '$jam_selesai'
+												  WHERE id 			= '$id'");
 
 		// cek query
 		if ($query) {
@@ -45,7 +31,6 @@ if (isset($_POST['simpan'])) {
 		} else {
 			// jika gagal tampilkan pesan kesalahan
 			header('location: index.php?alert=1');
-		}	
+		}
 	}
-}					
-?>
+}
