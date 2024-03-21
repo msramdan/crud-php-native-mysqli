@@ -55,7 +55,7 @@ $today = $nama_hari[$indeks_hari];
               $query = mysqli_query($db, "SELECT * FROM tbl_ajar
                                             WHERE hari='$today'
                                             AND jam_selesai > CURTIME()
-                                            ORDER BY id DESC LIMIT $mulai, $batas")
+                                            ORDER BY jam_mulai ASC LIMIT $mulai, $batas")
                 or die('Ada kesalahan pada query siswa: ' . mysqli_error($db));
 
               while ($data = mysqli_fetch_assoc($query)) {
